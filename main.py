@@ -7,7 +7,7 @@ class Star_Cinema: # done
 # entry show, viewShowList, bookSeats, viewAvailableSeats, 
 class Hall(Star_Cinema): # done
     def __init__(self, row, col, hall_no) -> None:
-        super().__init__()
+        super().__init__() 
         self.__row = row
         self.__col = col
         self.__hall_no = hall_no
@@ -19,7 +19,7 @@ class Hall(Star_Cinema): # done
         show = (id, movie_name, time)
         self.__show_list.append(show)
         # 2D array baki
-        self.__seats[id] = [[0] * self.__col for _ in range(self.__row)] # fixed
+        self.__seats[id] = [[0] * self.__col for i in range(self.__row)] # fixed
 
     def view_show_list(self): # done
         print('_______Showing All Lists________')
@@ -35,7 +35,7 @@ class Hall(Star_Cinema): # done
                 raise Exception('Invalid Seat Number')
             elif self.__seats[id][seat[0]][seat[1]] == 1:
                 raise Exception('Already Booked!')
-            else:
+            else: # array kaj kore na
                 self.__seats[id][seat[0]][seat[1]] = 1 # fixed array
 
     def view_available_seats(self, id): # done
@@ -48,11 +48,12 @@ class Hall(Star_Cinema): # done
                 print(self.__seats[id][i][j], end=" ")
             print()
 
-# initilization
+# initilization ar main
 hall = Hall(10, 10, 1)
 hall.entry_show(1, "The Last of US", "10-01-2024 12.00 PM")
 hall.entry_show(2, "Read Dead Redemption", "10-01-2024 11.00 PM")
 hall.entry_show(3, "Money Heist", "10-01-2024 10.00 PM")
+hall.entry_show(4, "Peaky Blinders", "10-01-2024 9.00 PM")
 
 while True: # done
     print("Welcome to Star Cinema")
