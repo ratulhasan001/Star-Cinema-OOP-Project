@@ -1,3 +1,6 @@
+# Phitron OOP Mid Term Exam
+# Star Cinema Project
+
 class Star_Cinema: # done
     __hall_list = []
 
@@ -6,7 +9,7 @@ class Star_Cinema: # done
 
 # entry show, viewShowList, bookSeats, viewAvailableSeats, 
 class Hall(Star_Cinema): # done
-    def __init__(self, row, col, hall_no) -> None:
+    def __init__(self, row, col, hall_no) -> None: # ok
         super().__init__() 
         self.__row = row
         self.__col = col
@@ -19,11 +22,11 @@ class Hall(Star_Cinema): # done
         show = (id, movie_name, time)
         self.__show_list.append(show)
         # 2D array baki
-        self.__seats[id] = [[0] * self.__col for i in range(self.__row)] # fixed
+        self.__seats[id] = [[0] * self.__col for i in range(self.__row)] # ok
 
     def view_show_list(self): # done
         print('_______Showing All Lists________')
-        return self.__show_list # fixed
+        return self.__show_list # ok
 
     def book_seats(self, id, seats): # done
         # invalid seat booked seat
@@ -36,7 +39,7 @@ class Hall(Star_Cinema): # done
             elif self.__seats[id][seat[0]][seat[1]] == 1:
                 raise Exception('Already Booked!')
             else: # array kaj kore na
-                self.__seats[id][seat[0]][seat[1]] = 1 # fixed array
+                self.__seats[id][seat[0]][seat[1]] = 1 # ok array
 
     def view_available_seats(self, id): # done
         # id na thakle error
@@ -65,7 +68,8 @@ while True: # done
 
     if n == 1: # done
         print("Introducing our shows : ")
-        print_list = hall.view_show_list()  # fixed
+         # print hoina
+        print_list = hall.view_show_list()  # ok
         for i in print_list:
             print(i)
         
@@ -79,7 +83,7 @@ while True: # done
             x, y = map(int, input().split())
             x -= 1
             y -= 1
-            seats = [(x, y)]
+            seats = [(x, y)] # ok
             hall.book_seats(id, seats)
         print("Successfully Booked!")
     elif n == 0:
