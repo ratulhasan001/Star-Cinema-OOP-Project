@@ -1,11 +1,11 @@
-class Star_Cinema:
+class Star_Cinema: # done
     __hall_list = []
 
     def entry_hall(self, hall):
         self.__hall_list.append(hall)
 
-
-class Hall(Star_Cinema):
+# entry show, viewShowList, bookSeats, viewAvailableSeats, 
+class Hall(Star_Cinema): # done
     def __init__(self, row, col, hall_no) -> None:
         super().__init__()
         self.__row = row
@@ -15,16 +15,18 @@ class Hall(Star_Cinema):
         self.__seats = {}
         self.entry_hall(self)
 
-    def entry_show(self, id, movie_name, time):
+    def entry_show(self, id, movie_name, time): # done
         show = (id, movie_name, time)
         self.__show_list.append(show)
-        self.__seats[id] = [[0] * self.__col for _ in range(self.__row)]
+        # 2D array baki
+        self.__seats[id] = [[0] * self.__col for _ in range(self.__row)] # fixed
 
-    def view_show_list(self):
+    def view_show_list(self): # done
         print('_______Showing All Lists________')
-        return self.__show_list
+        return self.__show_list # fixed
 
-    def book_seats(self, id, seats):
+    def book_seats(self, id, seats): # done
+        # invalid seat booked seat
         if id not in [show[0] for show in self.__show_list]:
             raise Exception(f'ID {id} is invalid!')
         
@@ -34,9 +36,10 @@ class Hall(Star_Cinema):
             elif self.__seats[id][seat[0]][seat[1]] == 1:
                 raise Exception('Already Booked!')
             else:
-                self.__seats[id][seat[0]][seat[1]] = 1
+                self.__seats[id][seat[0]][seat[1]] = 1 # fixed array
 
-    def view_available_seats(self, id):
+    def view_available_seats(self, id): # done
+        # id na thakle error
         if id not in [show[0] for show in self.__show_list]: 
             raise Exception(f'ID {id} is invalid!')
         
@@ -45,35 +48,39 @@ class Hall(Star_Cinema):
                 print(self.__seats[id][i][j], end=" ")
             print()
 
-
+# initilization
 hall = Hall(10, 10, 1)
-hall.entry_show(1, "Avengers: Chicken Edition", "10-01-2024 12.00 PM")
-hall.entry_show(2, "Avengers: Murga Dynasty", "10-01-2024 11.00 PM")
-hall.entry_show(3, "Dr Chicken", "10-01-2024 10.00 PM")
+hall.entry_show(1, "The Last of US", "10-01-2024 12.00 PM")
+hall.entry_show(2, "Read Dead Redemption", "10-01-2024 11.00 PM")
+hall.entry_show(3, "Money Heist", "10-01-2024 10.00 PM")
 
-while True:
-    print("Welcome to MurgiPlex")
+while True: # done
+    print("Welcome to Star Cinema")
     print("Press 1 to check all the shows")
     print("Press 2 to view available seats")
     print("Press 3 to book ticket")
     print("Press 0 to terminate the booking")
     n = int(input("Please Enter The Command : "))
 
-    if n == 1:
+    if n == 1: # done
         print("Introducing our shows : ")
-        print(hall.view_show_list())
-    elif n == 2:
+        print_list = hall.view_show_list()  # fixed
+        for i in print_list:
+            print(i)
+        
+    elif n == 2: # done
         id = int(input("Enter the ID : "))
         hall.view_available_seats(id)
-    elif n == 3:
+    elif n == 3: # done
         id = int(input("Enter Show ID : "))
-        total_tickets = int(input("Enter number of tickets you want to book"))
+        total_tickets = int(input("Enter number of tickets you want to book : "))
         for _ in range(total_tickets):
             x, y = map(int, input().split())
             x -= 1
             y -= 1
             seats = [(x, y)]
             hall.book_seats(id, seats)
+        print("Successfully Booked!")
     elif n == 0:
         break
     else:
